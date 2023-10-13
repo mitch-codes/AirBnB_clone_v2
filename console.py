@@ -55,6 +55,7 @@ class HBNBCommand(cmd.Cmd):
 
             # isolate and validate <command>
             _cmd = pline[pline.find('.') + 1:pline.find('(')]
+
             if _cmd not in HBNBCommand.dot_cmds:
                 raise Exception
 
