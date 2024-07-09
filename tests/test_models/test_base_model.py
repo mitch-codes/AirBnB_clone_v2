@@ -1,7 +1,5 @@
 #!/usr/bin/python3
 """ """
-import sys
-sys.path.append('../..')
 from models.base_model import BaseModel
 import unittest
 import datetime

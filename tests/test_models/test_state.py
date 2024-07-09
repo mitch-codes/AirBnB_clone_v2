@@ -1,7 +1,5 @@
 #!/usr/bin/python3
 """ """
-import sys
-sys.path.append('../..')
 from tests.test_models.test_base_model import test_basemodel
 from models.state import State
 

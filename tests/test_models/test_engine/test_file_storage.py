@@ -1,7 +1,5 @@
 #!/usr/bin/python3
 """ Module for testing file storage"""
-import sys
-sys.path.append('../../..')
 import unittest
 from models.base_model import BaseModel
 from models import storage
