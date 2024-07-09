@@ -122,8 +122,10 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return
         new_instance = HBNBCommand.classes[args]()
+        new_instance.name = "Cali"
         storage.save()
         print(new_instance.id)
+        print(new_instance.__dict__)
         storage.save()
 
     def help_create(self):
