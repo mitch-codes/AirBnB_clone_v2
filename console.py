@@ -127,6 +127,13 @@ class HBNBCommand(cmd.Cmd):
             for myObjs in my_arg[1:]:
                 myName = myObjs.split("=")[0]
                 myVal = myObjs.split("=")[1]
+                if myVal[0] == '"':
+                    myVal = myVal[1:-1].replace("_", " ")
+                else:
+                    if "." in myVal:
+                        myVal = float(myVal)
+                    else:
+                        myVal = int(myVal)
                 setattr(new_instance, myName, myVal)
         storage.save()
         print(new_instance.id)
