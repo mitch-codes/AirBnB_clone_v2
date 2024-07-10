@@ -124,7 +124,10 @@ class HBNBCommand(cmd.Cmd):
             return
         new_instance = HBNBCommand.classes[my_arg[0]]()
         if len(my_arg) > 1:
-            new_instance.name = my_arg[1].split("=")[1]
+            for myObjs in my_arg[1:]:
+                myName = myObjs.split("=")[0]
+                myVal = myObjs.split("=")[1]
+                setattr(new_instance, myName, myVal)
         storage.save()
         print(new_instance.id)
         print(new_instance.__dict__)
