@@ -11,3 +11,4 @@ class Review(BaseModel, Base):
     place_id = Column(String(60), nullable=False, ForeignKey("places.id"))
     user_id = Column(String(60), nullable=False, ForeignKey("user.id"))
     text = Column(String(1024), nullable=False)
+    user = relationship("User", back_populates="reviews")
