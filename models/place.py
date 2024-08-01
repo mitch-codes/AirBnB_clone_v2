@@ -3,6 +3,9 @@
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String, Integer, ForeignKey, Float
 from sqlalchemy.orm import relationship
+from models.review import Review
+import gc
+import os
 
 
 class Place(BaseModel, Base):
@@ -21,3 +24,16 @@ class Place(BaseModel, Base):
     amenity_ids = []
     user = relationship("User", back_populates="places")
     cities = relationship("City", back_populates="places")
+
+    if os.getenv("hbtn") == "bla":
+        reviews = relationship("Review", back_populates="places")
+    else:
+        @property
+        def reviews(self):
+            myobjlist = []
+            myobjs = gc.get_objects()
+            for ob in myobjs:
+                if isinstance(ob, Review):
+                    if ob.place_id == self.id:
+                        myobjlist.append(ob)
+            return myobjlist
