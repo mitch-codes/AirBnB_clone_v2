@@ -1,12 +1,17 @@
 #!/usr/bin/python3
 """ Place Module for HBNB project """
 from models.base_model import BaseModel, Base
-from sqlalchemy import Column, String, Integer, ForeignKey, Float
+from sqlalchemy import Column, String, Integer, ForeignKey, Float, Table
 from sqlalchemy.orm import relationship
 from models.review import Review
+from models.amenity import Amenity
 import gc
 import os
 
+place_amenity = Table('association', Base.metadata,
+    Column('place_id', String(60), ForeignKey(place,id), primary_key=True, nullable=False),
+    Column('amenity_id', String(60), ForeignKey(amenities.id), primary_key=True, nullable=False)
+)
 
 class Place(BaseModel, Base):
     """ A place to stay """
@@ -27,6 +32,7 @@ class Place(BaseModel, Base):
 
     if os.getenv("hbtn") == "bla":
         reviews = relationship("Review", back_populates="places")
+        amenities = relationship("Amenity", secondary=place_amenity, back_populates="place_amenities", viewonly=False)
     else:
         @property
         def reviews(self):
@@ -34,6 +40,20 @@ class Place(BaseModel, Base):
             myobjs = gc.get_objects()
             for ob in myobjs:
                 if isinstance(ob, Review):
-                    if ob.place_id == self.id:
+                    if ob.place_id == self.city_id:
                         myobjlist.append(ob)
             return myobjlist
+
+        @property
+        def amenities(self):
+            myAmenList = []
+            for obj in gc.get_objects():
+                if isinstance(obj, Amenity):
+                    if odj.id == self.amenity_id:
+                        myAmenList.append(obj)
+            return myAmenList
+
+        @amenities.setter
+        def amenities(self, obj):
+            if isinstance(obj, Amenity):
+                self.amenity_id = odj.id
