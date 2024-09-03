@@ -23,7 +23,7 @@ def display_states(state_id=None):
             if myrealstatelist.id == mycity.state_id:
                 tempcities.append(mycity)
 
-        return render_template('templates/9-states.html', state=myrealstate, cities=tempcities)
+        return render_template('templates/9-states.html', statereal=myrealstate, cities=tempcities)
 
 @app.teardown_appcontext
 def db_close(exception):
