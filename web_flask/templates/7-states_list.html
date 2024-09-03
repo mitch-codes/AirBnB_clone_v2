@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<HTML lang="en">
+    <HEAD>
+        <TITLE>HBNB</TITLE>
+    </HEAD>
+    <BODY>
+        <H1>States</H1>
+        <UL>
+             {% for item1, item2 in zip(ids, names) %}
+
+            <LI>{{ item1 }}: <B>{{ item2 }}</B></LI>
+
+            {% endfor %}
+        </UL>
+    </BODY>
+</HTML>
